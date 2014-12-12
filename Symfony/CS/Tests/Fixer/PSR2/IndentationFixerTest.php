@@ -50,97 +50,105 @@ class IndentationFixerTest extends AbstractFixerTestBase
         $this->makeTest($expected, $input);
     }
 
+    /**
+     * @dataProvider provideFourSpaces
+     */
+    public function testFourSpaces($expected, $input = null)
+    {
+        $this->makeTest($expected, $input);
+    }
+
     public function provideIndentationOnly()
     {
         $cases = array();
 
         $cases[] = array(
             '<?php
-        echo ALPHA;',
+    echo ALPHA;',
             "<?php
 \t\techo ALPHA;",
         );
 
         $cases[] = array(
             '<?php
-        echo BRAVO;',
+    echo BRAVO;',
             "<?php
 \t\techo BRAVO;",
         );
 
         $cases[] = array(
             '<?php
-        echo CHARLIE;',
+    echo CHARLIE;',
             "<?php
  \t\techo CHARLIE;",
         );
 
         $cases[] = array(
             '<?php
-        echo DELTA;',
+    echo DELTA;',
             "<?php
   \t\techo DELTA;",
         );
 
         $cases[] = array(
             '<?php
-        echo ECHO;',
+    echo ECHO;',
             "<?php
    \t\techo ECHO;",
         );
 
         $cases[] = array(
             '<?php
-        echo FOXTROT;',
+    echo FOXTROT;',
             "<?php
 \t \techo FOXTROT;",
         );
 
         $cases[] = array(
             '<?php
-        echo GOLF;',
+    echo GOLF;',
             "<?php
 \t  \techo GOLF;",
         );
 
         $cases[] = array(
             '<?php
-        echo HOTEL;',
+    echo HOTEL;',
             "<?php
 \t   \techo HOTEL;",
         );
 
         $cases[] = array(
             '<?php
-        echo INDIA;',
+    echo INDIA;',
             "<?php
 \t    echo INDIA;",
         );
 
         $cases[] = array(
             '<?php
-        echo JULIET;',
+    echo JULIET;',
             "<?php
  \t   \techo JULIET;",
         );
 
         $cases[] = array(
             '<?php
-        echo KILO;',
+    echo KILO;',
             "<?php
   \t  \techo KILO;",
         );
 
         $cases[] = array(
             '<?php
-        echo MIKE;',
+    echo MIKE;',
             "<?php
    \t \techo MIKE;",
         );
 
         $cases[] = array(
             '<?php
-        echo NOVEMBER;',
+    echo NOVEMBER;',
             "<?php
     \techo NOVEMBER;",
         );
@@ -154,21 +162,21 @@ class IndentationFixerTest extends AbstractFixerTestBase
 
         $cases[] = array(
             '<?php
-         echo OSCAR;',
+    echo OSCAR;',
             "<?php
 \t \t echo OSCAR;",
         );
 
         $cases[] = array(
             '<?php
-          echo PAPA;',
+    echo PAPA;',
             "<?php
 \t \t  echo PAPA;",
         );
 
         $cases[] = array(
             '<?php
-           echo QUEBEC;',
+    echo QUEBEC;',
             "<?php
 \t \t   echo QUEBEC;",
         );
@@ -181,15 +189,15 @@ class IndentationFixerTest extends AbstractFixerTestBase
         return array(
             array(
                 '<?php $x = "a: \t";',
-            ),
+                ),
             array(
                 "<?php
 \$x = \"
 \tLike
 \ta
 \tdog\";",
-            ),
-        );
+                ),
+            );
     }
 
     public function provideTabInComment()
@@ -213,18 +221,18 @@ class IndentationFixerTest extends AbstractFixerTestBase
 \t *
 \t * @return
 \t */",
-        );
+            );
 
         $cases[] = array(
             '<?php
-        /**
-         * Test that tabs in docblocks are converted to spaces.
-         */',
+    /**
+     * Test that tabs in docblocks are converted to spaces.
+     */',
             "<?php
 \t\t/**
 \t\t * Test that tabs in docblocks are converted to spaces.
 \t\t */",
-        );
+            );
 
         $cases[] = array(
             '<?php
@@ -235,7 +243,7 @@ class IndentationFixerTest extends AbstractFixerTestBase
 \t/*
 \t | Test that tabs in comments are converted to spaces.
 \t */",
-        );
+            );
 
         $cases[] = array(
             "<?php
@@ -248,7 +256,29 @@ class IndentationFixerTest extends AbstractFixerTestBase
 \t * This variable
 \t * should not be '\t', really!
 \t */",
-        );
+            );
+
+        return $cases;
+    }
+
+    public function provideFourSpaces()
+    {
+        $cases = array();
+
+        $cases[] = array(
+            '<?php
+    echo ALPHA;',
+            '<?php
+ echo ALPHA;',
+            );
+        $cases[] = array(
+            '<?php
+
+    echo BETA;',
+            '<?php
+
+  echo BETA;',
+            );
 
         return $cases;
     }
